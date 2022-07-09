@@ -268,4 +268,26 @@ function migrationGroup($totalItem,$list){
    echo $new_arr;
 }
 // migrationGroup($input_tot_arr,$input_list_ar);
+//-------------------------------------------------
+//https://www.hackerrank.com/challenges/countingsort2/problem?isFullScreen=true
+// $tot = trim(fgets(STDIN));
+// $inpt_list = trim(fgets(STDIN));
+
+function arrySort($tot,$list){
+  $to_ar = explode(" ",$list);
+  if (count($to_ar) != $tot) {
+       echo "ERROR NOT SAME";
+       die();
+  }
+  sort($to_ar);
+  $empty = array();
+  foreach ($to_ar as $key) {
+     array_push($empty,$key);
+  }
+  $to_str = implode(" ",$empty);
+  echo $to_str;
+}
+//arrySort($tot,$inpt_list);
+//------------------------------------------------------------
+
  ?>
