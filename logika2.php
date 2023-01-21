@@ -79,4 +79,62 @@ function finalGrade($input){
 //grading student---------------------
 //tes 2
 
+function libraryFine($pemngembalian, $batas){
+   $return = explode(" ",$pemngembalian);
+   $due_date = explode(" ",$batas);
+
+   if (count($return) != 3) {
+      echo "return ERROR MUST BE 3";
+      die();
+   }
+   if (count($due_date) != 3) {
+      echo "due date ERROR MUST BE 3";
+      die();
+   }
+   $d1 = $due_date[0];
+   $d2 = $due_date[1];
+   $d3 = $due_date[2];
+   $p = $return[0];
+   $p2 = $return[1];
+   $p3 = $return[2];
+   if (intval($p2)>12 || intval($d2) > 12 ) {
+      echo "ERROR MONTH";
+      die();
+   }
+   if (intval($p)>31 || intval($d1)> 31) {
+      echo "ERROR day";
+      die();
+   }
+   $pinjam = date_create($p3.'-'.$p2.'-'.$p);
+   $final_date_pinjam = $pinjam->format('Y-m-d');
+   $expired_ = date_create($d3.'-'.$d2.'-'.$d1);
+   $final_date_expired = $expired_->format('Y-m-d');
+
+   $interval = date_diff($expired_,$pinjam);
+   if ($final_date_pinjam < $final_date_expired || $final_date_pinjam == $final_date_expired) {
+      echo 0;
+   }else{
+      $month = $interval->format('%m');
+      $year = $interval->format('%Y');
+      $day = $interval->format('%d');
+      if ($month == 0 && $year == 0) {
+         if ($p2 != $d2) {
+            echo 10000;
+         }else{
+            echo  15 * intval($day);
+         }
+      }else if ($month != 0 && $year == 0) {
+         echo  500 * intval($p2-$d2);
+      }else if($year != 0){
+         echo 10000;
+      }
+   }
+
+}
+// $return_book = trim(fgets(STDIN));
+// $expired = trim(fgets(STDIN));
+// libraryFine($return_book, $expired);
+//library fine
+//https://www.hackerrank.com/challenges/library-fine/problem?isFullScreen=true
+
 ?>
