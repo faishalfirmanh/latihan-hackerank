@@ -137,4 +137,64 @@ function libraryFine($pemngembalian, $batas){
 //library fine
 //https://www.hackerrank.com/challenges/library-fine/problem?isFullScreen=true
 
+function jumpingOnTheClound($lengthJump){
+   $input_List_jump = trim(fgets(STDIN));
+   $to_ar = explode(" ",$input_List_jump);
+   if (count($to_ar) != $lengthJump) {
+      echo "ERROR, TOTAL TIDAK SAMA";
+      die();
+   }
+   if (in_array(0, $to_ar) && in_array(1, $to_ar) ){
+     
+   }else{
+      echo "tidak boleh selain 0 dan 1";
+   }
+}
+// $input_jump = trim(fgets(STDIN));
+// jumpingOnTheClound($input_jump);
+
+function equalityInArray($number){
+  $input_list =  trim(fgets(STDIN));
+  $to_ar = explode(" ",$input_list);
+  if ($number != count($to_ar)) {
+      echo "ERROR";
+      die();
+  }
+  $cek_duplicate = array_count_values($to_ar);
+  $arr_empty = [];
+  $delete_arr = [];
+  foreach ($cek_duplicate as $key => $value) {
+      if ($value > 1) {
+         //final array yang tampil
+         array_push($arr_empty,$key);
+      }else{
+         //final array yang dihapus
+         array_push($delete_arr,$key);
+      }
+  }
+  $tot_delete = count($delete_arr);
+  echo $tot_delete;
+ 
+}
+// $input_a = trim(fgets(STDIN));
+// equalityInArray($input_a);
+
+function functionGetMedian($in){
+   $input_list =  trim(fgets(STDIN));
+   $to_ar = explode(" ",$input_list);
+   if ($in != count($to_ar)) {
+       echo "ERROR";
+       die();
+   }
+   sort($to_ar);
+   $stgh = count($to_ar) / 2;
+   $med = $to_ar[$stgh];
+   echo $med;
+}
+// $input_ar = trim(fgets(STDIN));
+// functionGetMedian($input_ar);
+/** median  */
+//https://www.hackerrank.com/challenges/find-the-median/problem?isFullScreen=true
+
+
 ?>
