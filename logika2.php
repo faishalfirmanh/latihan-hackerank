@@ -196,5 +196,30 @@ function functionGetMedian($in){
 /** median  */
 //https://www.hackerrank.com/challenges/find-the-median/problem?isFullScreen=true
 
+function findUniqueElement($length_of_array){
+    $input_item_array = trim(fgets(STDIN));
+    $to_arr = explode(" ",$input_item_array);
+    if (count($to_arr) != $length_of_array) {
+      echo "ERROR NOT SAME";
+      die();
+    }
+    $arr_emp =[];
+    $cek_duplicate = array_count_values($to_arr);
+    foreach ($cek_duplicate as $key => $value) {
+      if ($value < 2) {
+        array_push($arr_emp,$key);
+      }
+  }
+  if (count($arr_emp) > 0) {
+      foreach ($arr_emp as $key) {
+         echo $key;
+      }
+  }
+}
+// $input_length = trim(fgets(STDIN));
+// findUniqueElement($input_length);
+/* lonely integer -> done*/
+//https://www.hackerrank.com/challenges/lonely-integer/problem?isFullScreen=true
+
 
 ?>
