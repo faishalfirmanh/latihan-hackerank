@@ -222,4 +222,24 @@ function findUniqueElement($length_of_array){
 //https://www.hackerrank.com/challenges/lonely-integer/problem?isFullScreen=true
 
 
+function camelCase($input){
+   //ctype_upper($input) -> seluruh besar semua
+   if ( preg_match('/[A-Z]/', $input)) {
+       $to_arr = str_split($input);
+       $upper = [];
+       foreach ($to_arr as $key ) {
+         if (preg_match('/[A-Z]/', $key)) {
+            array_push($upper, $key);
+         }
+       }
+       echo count($upper) + 1;
+   }else{
+      echo 1;
+      die();
+   }
+}
+// $input_words = trim(fgets(STDIN));
+// camelCase($input_words); //-->done
+//https://www.hackerrank.com/challenges/camelcase/problem?isFullScreen=true
+
 ?>
