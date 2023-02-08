@@ -242,4 +242,33 @@ function camelCase($input){
 // camelCase($input_words); //-->done
 //https://www.hackerrank.com/challenges/camelcase/problem?isFullScreen=true
 
+//https://www.hackerrank.com/challenges/bon-appetit/problem?isFullScreen=true/->done
+
+function BonAppetit($inpt){
+   $to_arr = explode(" ",$inpt);
+   if(count($to_arr) != 2){
+      echo "ERROR MUST BE 2";
+      die();
+   }
+   $tidak_diamakn = $to_arr[1];
+   $list_item = $to_arr[0];
+   $input_list = trim(fgets(STDIN));
+   $input_uang_bill = trim(fgets(STDIN));
+   $list_to_arrr = explode(" ",$input_list);
+   if (count($list_to_arrr) != $list_item) {
+      echo "ERROR TIDAK SAMA";
+      die();
+   }
+   unset($list_to_arrr[$tidak_diamakn]);
+   $total = array_sum($list_to_arrr) / 2;
+   $result_pembagian = $input_uang_bill - $total;
+   if ($result_pembagian == 0) {
+      echo "Bon Appetit";
+   }else{
+      echo $result_pembagian;
+   }
+}
+// $num = trim(fgets(STDIN));
+// BonAppetit($num);
+
 ?>
