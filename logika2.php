@@ -271,4 +271,44 @@ function BonAppetit($inpt){
 // $num = trim(fgets(STDIN));
 // BonAppetit($num);
 
+
+function breakingWordRecord($input){
+   $input_list = trim(fgets(STDIN));
+   $to_arr = explode(" ",$input_list);
+   if (count($to_arr) != $input) {
+      echo "ERROR NOT SAME";
+      exit();
+   }
+   $all_list = array();
+   $hight = array();
+   $low = array();
+   $isFirst = true;
+   foreach($to_arr as $key => $value){
+      array_push($all_list,$value);
+     if($isFirst){
+       array_push($hight,$value);
+       array_push($low,$value);
+     }else{
+       if ($value > $hight[count($hight)-1]) {
+          array_push($hight,$value);
+       }
+       if($value < $low[count($low)-1]) {
+         array_push($low,$value);
+       }
+     }
+     $isFirst = false;
+   }
+  
+   array_shift($hight);
+   array_shift($low);
+   $total_hight = count(array_unique($hight));
+   $total_low = count(array_unique($low));
+   echo $total_hight .' '.$total_low;
+}
+
+// $input_score = trim(fgets(STDIN));
+// breakingWordRecord($input_score);
+//breaking best word record
+//https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem
+
 ?>
