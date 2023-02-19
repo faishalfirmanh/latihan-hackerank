@@ -305,7 +305,6 @@ function breakingWordRecord($input){
    $total_low = count(array_unique($low));
    echo $total_hight .' '.$total_low;
 }
-
 // $input_score = trim(fgets(STDIN));
 // breakingWordRecord($input_score);
 //breaking best word record
