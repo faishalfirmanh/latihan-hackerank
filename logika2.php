@@ -310,4 +310,231 @@ function breakingWordRecord($input){
 //breaking best word record
 //https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem
 
+
+function theBirddayBar($number){
+   $list = trim(fgets(STDIN));
+   $expect = trim(fgets(STDIN));
+   $to_arr = explode(" ",$list);
+   $to_arr_expect = explode(" ",$expect);
+
+   if (count($to_arr) != $number) {
+      print_r("ERROR NOT SAME");
+      exit();
+   }
+
+   if (count($to_arr_expect) != 2) {
+      print_r("ERROR expect must be 2");
+      exit();
+   }
+
+   $value_must = $to_arr_expect[0];
+   $list_item_plus = $to_arr_expect[1];
+   
+   $val_ori = array();
+   $val_prev = array();
+   $val_next = array();
+   $res = array();
+   for ($index=0; $index <count($to_arr) ; $index++) { 
+       $val_item = $to_arr[$index];
+       $prev = $to_arr[$index] == $to_arr[0] ? $to_arr[$index-0] : $to_arr[$index-1];
+       $next = $to_arr[$index] == $to_arr[count($to_arr)-1] ? $to_arr[$index+0] : $to_arr[$index+1];
+        
+       array_push($res, $val_item);
+       array_push($res, $val_prev);
+         
+       
+      
+   }
+   $example = array(33,43,34,55 ,34);
+   $total_all = array_sum($example);//menjumlahkan semua array
+   $total_each = count($example);
+   
+}
+// $length = trim(fgets(STDIN));
+// theBirddayBar($length);
+//https://www.hackerrank.com/challenges/the-birthday-bar/problem?isFullScreen=true /-notok
+
+function findDigits($n){
+   $var = [];
+   for ($i=0; $i <$n ; $i++) { 
+      $input_number = trim(fgets(STDIN));
+      array_push($var,$input_number);
+   }
+   $bil_ori = [];
+   $bilangan_sisa_0 = [];
+   $bil_asli = [];
+   foreach ($var as $key => $value) {
+      array_push($bil_ori,$value);
+      $rm = str_replace(0,'',$value);
+      $satu = str_split($rm);
+      $i = 0;
+      foreach ($satu as $key => $value2) {
+          if ($value % $value2 == 0) {
+            // echo 'ori '. $value ." sisa ".$value2;
+            // echo "\n";
+            //$bilangan_sisa_0[$value]= array($value2);
+             array_push($bilangan_sisa_0,$value2);
+             array_push($bil_asli,$value);
+          }
+          $i++;
+      }
+   }
+   //  $final = array_count_values($bilangan_sisa_0);
+   //  var_dump($final);
+   // foreach ($final as $key => $value) {
+   //    echo $value;
+   //    echo "\n";
+   // }
+}
+// $length = trim(fgets(STDIN));
+// findDigits($length);
+//https://www.hackerrank.com/challenges/find-digits/problem?isFullScreen=true /-notok
+
+function FunnyString($length){
+   $original_string = [];
+   for ($i=0; $i <$length ; $i++) { 
+      $input = trim(fgets(STDIN));
+      array_push($original_string,$input);
+   }
+   
+   //lopping string
+  foreach ($original_string as $key => $value) {
+      $str_ori_to_arr = str_split($value);
+      $str_reverse_to_arr = str_split(strrev($value));
+     
+      $value_asci_ori = [];
+      $value_asci_reverse  = [];
+      foreach ($str_ori_to_arr as $key => $valueOri) {
+         $asci_ori = ord($valueOri);
+         array_push($value_asci_ori,$asci_ori);
+      }
+      foreach ($str_reverse_to_arr as $key => $valueReverse) {
+         $asci_reverse = ord($valueReverse);
+         array_push($value_asci_reverse,$asci_reverse);
+      }
+     
+
+      var_dump($value_asci_ori);
+      echo "\n";
+      var_dump($value_asci_reverse);
+  }
+
+
+}
+// $input = trim(fgets(STDIN));
+// FunnyString($input);
+//https://www.hackerrank.com/challenges/funny-string/problem?isFullScreen=false |notOk
+
+function functionForArray($str_desired, $str_1){
+   $lengt_input = count($str_1);
+   $lengt_result = count($str_desired);
+   $index_1 = 0;
+   foreach ($str_desired as $index_result => $value_result) {//arr1
+      $sebelumnya = $index_1 <1 ?$index_1 : $index_1-1;
+      $setelahnya = $index_1 >$lengt_result-1 ?$index_1 : $index_1+1;
+      $index_input_2 = 0;
+       foreach ($str_1 as $index_input => $value_input) {//arr2
+         $sebelumnya_input = $index_input <1 ?$index_input : $index_input-1;
+         $setelahnya_input = $index_input >$lengt_input-1 ?$index_input : $index_1+1;
+          if ($value_result == $value_input && $index_result == $index_input && $str_desired[$sebelumnya] == $str_1[$sebelumnya_input]) {
+            if ($str_desired[$setelahnya] != null) {
+               echo "value ".$value_result .' ] index => '.$index_input . ' sebelumnya '
+               .$sebelumnya .' |setelahnya '.$setelahnya .' || --- '.$sebelumnya_input . '{}';
+               echo "\n";
+            }
+          }
+          $index_input_2++;
+       }
+       $index_1++;
+   }
+}
+function appendDeleteString($string1,$desiredResult,$operation){
+
+   $to_arr_str1 = str_split($string1);
+   $str_1 = [];
+   foreach ($to_arr_str1 as $key => $value) {
+      array_push($str_1,$value);
+   }
+   $to_arr_str2 = str_split($desiredResult);
+   $str_desired = [];
+   foreach ($to_arr_str2 as $key => $value) {
+     array_push($str_desired,$value);
+   }
+   $lengt_result = count($str_desired);
+   $lengt_input = count($str_1);
+   if (strpos($string1, $desiredResult) !== false) {
+      // echo "ada";
+      // die();
+       //modif str_1 :
+         // delete 
+           if ($lengt_result > $operation) {
+              echo "446";
+           }else{
+              $total_remove = $operation-$lengt_result;
+              $total_add = $operation-$total_remove;
+              if ($total_add + $total_remove == $operation) {
+                 echo "Yes";
+              }else{
+                 echo "No";
+              }
+           }
+         // add
+       //echo $lengt_result;
+   }else{
+      if ($lengt_result > $operation) {
+         echo "461";
+      }else{
+         $total_remove = $operation-$lengt_result;
+         $total_add = $operation-$total_remove;
+         if ($total_add + $total_remove == $operation) {
+            echo "466";
+         }else{
+            echo "468";
+         }
+      }
+   }
+
+}
+// $a = trim(fgets(STDIN));
+// $b =trim(fgets(STDIN));
+// $c = trim(fgets(STDIN));
+// appendDeleteString($a, $b, $c); //notok
+
+function Anagram($a,$b){
+   $to_ar1 = str_split($a);
+   $to_ar2 = str_split($b);
+   
+   $count_value1 = array_count_values($to_ar1);
+   $count_value2 = array_count_values($to_ar2);
+
+   krsort($count_value1);
+   krsort($count_value2);
+ 
+   $beda_2 = [];
+  
+   $diff_assoc =array_diff_assoc($count_value1,$count_value2);
+   $diff_assoc2 =array_diff_assoc($count_value2,$count_value1);
+   $diff_key1 =array_diff_key($count_value1,$count_value2);
+   $diff_key2 =array_diff_key($count_value2,$count_value1);
+   $combine = array_merge($diff_key1,$diff_key2);
+    foreach ($combine as $key => $value) {
+       array_push($beda_2,$value);
+    }
+   
+   foreach ($diff_assoc as $key1dif => $value1dif) {
+      foreach ($diff_assoc2 as $key2dif => $value2dif) {
+         if ($key1dif == $key2dif && $key2dif == $key1dif) {
+            $selisih = abs($value1dif - $value2dif);
+            array_push($beda_2,$selisih);
+         }
+      }
+   }
+   echo array_sum($beda_2);
+   
+}
+// $input_a = trim(fgets(STDIN));
+// $input_b =trim(fgets(STDIN));
+// Anagram($input_a,$input_b);
+//https://www.hackerrank.com/challenges/making-anagrams/problem?isFullScreen=false #oksolved
+
 ?>
