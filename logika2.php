@@ -537,4 +537,57 @@ function Anagram($a,$b){
 // Anagram($input_a,$input_b);
 //https://www.hackerrank.com/challenges/making-anagrams/problem?isFullScreen=false #oksolved
 
+//solved
+//https://www.hackerrank.com/challenges/sock-merchant/problem?isFullScreen=true
+function pairedSock($length_s,$item_kaos){
+   $to_arr_a = explode(" ",$item_kaos);
+
+   if (count($to_arr_a) != $length_s) {
+       echo "TIDAK SAMA A";
+       die();
+   }
+
+   $total_item_masing2 = array_count_values($to_arr_a);
+
+   $item_nya = array();
+   $total_nya = array();
+   foreach ($total_item_masing2 as $key => $value) {
+       if ((int) $value > 1 ) {
+          if ((int)$value >= 2 && (int) $value < 4) {
+               array_push($item_nya,$key);
+               array_push($total_nya,1);
+          }else if((int) $value >= 4){
+               array_push($item_nya,$key);
+               $val_double = (int) $value / 2;
+               $cek_ = $value % 2 == 0 ? $val_double : floor($val_double);
+               array_push($total_nya,$cek_);
+          }
+       }else{
+           array_push($item_nya,0);
+           array_push($total_nya,0);
+       }
+   }
+   
+   
+   $combine = array_combine($item_nya,$total_nya);
+  
+  
+
+   $tot_ = array();
+   foreach ($combine as $key => $value) {
+      array_push($tot_,$value);
+   }
+
+   if (array_sum($tot_) > 0) {
+       echo array_sum($tot_);
+   }else{
+       echo 0;
+   }
+  
+
+}
+// $length_s = trim(fgets(STDIN));
+// $item_kaos = trim(fgets(STDIN));
+// pairedSock($length_s,$item_kaos);
+
 ?>
