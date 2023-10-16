@@ -590,4 +590,138 @@ function pairedSock($length_s,$item_kaos){
 // $item_kaos = trim(fgets(STDIN));
 // pairedSock($length_s,$item_kaos);
 
+function appleAndOrange($start_end, $aple_orange, $item, $tiap_apel,$tiap_orange){
+   $to_arr_a_start = explode(" ",$start_end);
+   $start = $to_arr_a_start[0];
+   $end = $to_arr_a_start[1];
+   
+   $to_arr_loc = explode(" ",$aple_orange);
+   $mulai_apple = $to_arr_loc[0];
+   $mulai_jeruk = $to_arr_loc[1];
+
+   $to_arr_item =  explode(" ",$item);
+
+
+   if (count($to_arr_a_start) != 2) {
+       echo "start end harus 2";
+       die();
+   }
+
+   if (count($to_arr_loc) != 2) {
+      echo "lokasi harus 2";
+      die();
+   }
+
+   if (count($to_arr_item) != 2) {
+      echo "item harus 2";
+      die();
+   }
+
+   $to_arr_each_apple =  explode(" ",$tiap_apel);
+   $to_arr_eact_orange =  explode(" ",$tiap_orange);
+
+   $lok_aple = $to_arr_item[0];
+   $lok_jeruk = $to_arr_item[1];
+
+   if (sizeof($to_arr_each_apple) != (int) $lok_aple ) {
+      echo "item apple tidak sama dengan jarak";
+      die();
+   }
+
+   if (sizeof($to_arr_eact_orange) != (int) $lok_jeruk) {
+      echo "item orange tidak sama dengan jarak";
+      die();
+   }
+   
+   /** looping aple */
+   $list_tot_apple_pp = array();
+   for ($i=0; $i < count($to_arr_each_apple) ; $i++) { 
+      $res = $mulai_apple + $to_arr_each_apple[$i];
+      array_push($list_tot_apple_pp, $res);
+      
+   }
+
+  
+   $list_tot_orange_pp = array();
+   for ($i=0; $i < count($to_arr_eact_orange) ; $i++) { 
+      $res = $mulai_jeruk + $to_arr_eact_orange[$i];
+      array_push($list_tot_orange_pp, $res);
+   }
+
+   $range = array();
+   $tot_ap =array();
+   $tot_or = array();
+   for ($i=$start; $i <= $end ; $i++) { 
+      foreach ($list_tot_apple_pp as $keya => $valueAp) {
+         if ($valueAp == $i) {
+            array_push($tot_ap,$valueAp);
+         }
+      }
+      foreach ($list_tot_orange_pp as $keyo => $valueOr) {
+         if ($valueOr == $i) {
+            array_push($tot_or,$valueOr);
+         }
+      }
+      array_push($range,$i);
+   }
+
+   echo count($tot_ap);
+   echo "\n";
+   echo count($tot_or);
+
+
+
+}
+
+// $start_end = trim(fgets(STDIN));
+// $aple_orange = trim(fgets(STDIN));
+// $itemTot = trim(fgets(STDIN));
+// $tiap_apel =  trim(fgets(STDIN));
+// $tiap_orange =  trim(fgets(STDIN));
+
+// $start_end = "";
+// $aple_orange = "";
+// $itemTot = "";
+// $tiap_apel =  "";
+// $tiap_orange =  "";
+
+// appleAndOrange($start_end,$aple_orange, $itemTot, $tiap_apel, $tiap_orange);
+
+
+//list = nilai alfabet,
+//hurufnya =
+//tentuntan  tinggi maxnya * jumlah huruf
+
+
+function pdfViewer($listItmeNumber,$word){
+   $alvabet = "abcdefghijklmnopqrstuvwxyz";
+   $loop_alfabet = str_split(strtolower($alvabet),1);;
+   $loop_number_ = explode(" ",$listItmeNumber);
+   $loop_input_word = str_split(strtolower($word),1);// explode("",strtolower($word));
+
+   if (count($loop_number_) != 26) {
+       echo "ERRORR total list harus 26";
+       die();
+   }
+
+      $kombine = array_combine($loop_alfabet,$loop_number_);
+      
+      $list_val = [];
+      foreach ($kombine as $key => $value) {
+         for ($c=0; $c < count($loop_input_word) ; $c++) { 
+            if ($loop_input_word[$c] == $key) {
+               array_push($list_val,$value);
+            }
+         }
+      }
+
+     echo max($list_val) * count($list_val);
+  
+
+}
+//https://www.hackerrank.com/challenges/designer-pdf-viewer/problem ->ok solved
+// $input_list = trim(fgets(STDIN));
+// $input_word = trim(fgets(STDIN));
+// pdfViewer($input_list,$input_word);
+
 ?>
