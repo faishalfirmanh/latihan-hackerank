@@ -770,8 +770,108 @@ function divisibleSumPairs($detail, $list){
    echo $res;
    
 }
-$inpt_tot = trim(fgets(STDIN));
-$listAr = trim(fgets(STDIN));
-divisibleSumPairs($inpt_tot,$listAr);
+// $inpt_tot = trim(fgets(STDIN));
+// $listAr = trim(fgets(STDIN));
+//divisibleSumPairs($inpt_tot,$listAr);
+
+//https://www.hackerrank.com/challenges/angry-professor/problem?isFullScreen=true //->solved ok
+function AngryProfeshor($k, $n){
+  $toArr =  explode(" ",$n);;
+  $kehadiran = 0;
+  for ($i=0; $i < count($toArr) ; $i++) { 
+    if ((int)$toArr[$i] <= 0) {
+      $kehadiran++;
+    }
+  }
+  if ($kehadiran < $k) {
+   echo "YES";
+  }else{
+   echo "NO";
+  }
+ 
+}
+// $k = trim(fgets(STDIN));
+// $n = trim(fgets(STDIN));
+// AngryProfeshor($k,$n);
+
+//https://www.hackerrank.com/challenges/save-the-prisoner/problem?isFullScreen=true  ->not ok
+
+function SaveThePrisoner($tahanan, $permen,$kursi){
+
+      $counter = [$kursi];
+      echo "n = ".$tahanan . "| m = ".$permen . "| s = ".$kursi ."\n";
+
+      //start value looping = s
+      //total item / looping = m
+      //max last value in loop = n
+
+      while ($counter[0] <= $permen) {
+         echo "Perulangan ke-$counter[0] \n";
+
+         if ($counter[0] > $tahanan) {
+            $counter[0] = + 1;
+            $counter[0]++;
+            
+         }else{
+            $counter[0]++;
+         }        
+      }
+
+}
+// $n = 4;//intval(trim(fgets(STDIN))); //total tahanan
+// $m = 6;//intval(trim(fgets(STDIN))); //jumlah permen
+// $s = 2;//intval(trim(fgets(STDIN))); //dimulai
+// SaveThePrisoner($n,$m,$s);
+
+
+//https://www.hackerrank.com/challenges/funny-string/problem?isFullScreen=true //funny string ok solved
+function FunnyStr($str){
+   $toArr = str_split($str,1);
+
+   $arr1asci = [];
+   for ($i = 0; $i < count($toArr); $i++) {
+      $asci = ord($toArr[$i]);
+      array_push($arr1asci,$asci);
+   }
+
+   $reverse = strrev($str);
+   $toArr2 = str_split($reverse,1);
+   $arrasci2 = [];
+
+   for ($b = 0; $b < count($toArr2); $b++) {
+      $asci2 = ord($toArr2[$b]);
+      array_push($arrasci2,$asci2);
+   }
+
+   //asci1
+   $res1 = [];
+   for ($c=0; $c <count($arr1asci)-1 ; $c++) { 
+      if ($arr1asci[$c] >$arr1asci[$c+1] ) {
+         $res = $arr1asci[$c] - $arr1asci[$c+1];
+      }else{
+         $res = $arr1asci[$c+1]  - $arr1asci[$c];
+      }
+      array_push($res1,$res);
+   }
+  
+   //asci2
+   $res2 = [];
+   for ($d=0; $d < count($arrasci2)-1 ; $d++) { 
+      if ($arrasci2[$d] >$arrasci2[$d+1] ) {
+         $res = $arrasci2[$d] - $arrasci2[$d+1];
+      }else{
+         $res = $arrasci2[$d+1]  - $arrasci2[$d];
+      }
+      array_push($res2,$res);
+   }
+
+   if ($res1 == $res2) {
+      return "Funny";
+   }else{
+      return "Not Funny";
+   }
+}
+// $inputWord = trim(fgets(STDIN));
+// FunnyStr($inputWord);
 
 ?>
