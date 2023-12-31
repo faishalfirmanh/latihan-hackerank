@@ -679,11 +679,7 @@ function appleAndOrange($start_end, $aple_orange, $item, $tiap_apel,$tiap_orange
 // $tiap_apel =  trim(fgets(STDIN));
 // $tiap_orange =  trim(fgets(STDIN));
 
-// $start_end = "";
-// $aple_orange = "";
-// $itemTot = "";
-// $tiap_apel =  "";
-// $tiap_orange =  "";
+
 
 // appleAndOrange($start_end,$aple_orange, $itemTot, $tiap_apel, $tiap_orange);
 
@@ -723,5 +719,59 @@ function pdfViewer($listItmeNumber,$word){
 // $input_list = trim(fgets(STDIN));
 // $input_word = trim(fgets(STDIN));
 // pdfViewer($input_list,$input_word);
+
+
+function MinumumDeleted($input,$listAr){
+   $toArr = explode(" ",$listAr);
+
+   if ($input != count($toArr)) {
+      echo "ERROR TIDAK SAMA";
+      die();
+   }
+   $notSame = [];
+   $less = [];
+   $totSame = array_count_values($toArr);
+   
+}
+//https://www.hackerrank.com/challenges/equality-in-a-array/problem?isFullScreen=true .=>not solved
+// $input = trim(fgets(STDIN));
+// $listAr = trim(fgets(STDIN));
+// MinumumDeleted($input,$listAr);
+//test case 16
+//63 //output 18  | output harusnya harusnya,55
+//36 12 60 99 78 33 4 21 22 9 12 21 34 76 21 3 3 37 65 27 21 42 11 14 21 88 46 63 79 6 37 94 99 68 76 6 21 86 49 56 22 90 74 83 20 21 94 60 76 75 96 99 92 65 77 26 51 21 77 22 97 34 56
+//Expected Output
+
+
+//https://www.hackerrank.com/challenges/divisible-sum-pairs/problem?isFullScreen=true //solved ok
+function divisibleSumPairs($detail, $list){
+   $toArrInput = explode(" ",$detail);
+   $toArr = explode(" ",$list);
+
+   if (count($toArr) != (int) $toArrInput[0] ) {
+      echo "list array tidak sama dengan nilai";
+      die();
+   }
+   $hasilValue = (int) $toArrInput[1];
+   // 2x perulangan
+   //1. loop pertama untuk cek array biasah
+   //2. loop ke 2 i+1 dikarenankan dimulai tidak dari index ke 0. index ke 0 ambil dari looping ke 1
+   $res = 0;
+   for ($i=0; $i <count($toArr) ; $i++) { 
+      for ($a=$i+1; $a < count($toArr) ; $a++) { 
+         $cekResult = $toArr[$i] + $toArr[$a];
+         if ($cekResult % $hasilValue == 0) {
+            // echo "nilai ".$toArr[$i] ." + ". $toArr[$a] . " index ".$i . " index ".$a;
+            // echo "\n";
+            $res++;
+         }
+      }
+   }
+   echo $res;
+   
+}
+$inpt_tot = trim(fgets(STDIN));
+$listAr = trim(fgets(STDIN));
+divisibleSumPairs($inpt_tot,$listAr);
 
 ?>
