@@ -870,8 +870,49 @@ function FunnyStr($str){
    }else{
       return "Not Funny";
    }
-}
+}                                                
 // $inputWord = trim(fgets(STDIN));
 // FunnyStr($inputWord);
+//https://www.hackerrank.com/challenges/migratory-birds/problem?isFullScreen=true //not solved
+function FlatLateSpace($m,$n){
+   $toArr = explode(" ",$n);
+   if ($m == count($toArr)) {
+     echo 0;
+     die();
+   }
+  
+   asort($toArr);
 
+   for ($i=0; $i < count($toArr) ; $i++) { 
+      echo $toArr[$i];
+      echo "\n";
+   }
+
+}
+// $kota = trim(fgets(STDIN)); 
+// $statisun = trim(fgets(STDIN)); 
+// FlatLateSpace($kota,$statisun);
+
+//https://www.hackerrank.com/challenges/migratory-birds/problem?isFullScreen=true //SOLVED OK
+function MigratoryBird($tot,$list){
+
+   $Arr = explode(" ",$list);
+   if (count($Arr) != $tot) {
+      echo "ERROR TIDAK SAMA";
+      die();
+   }
+
+   $countVal = array_count_values($Arr);
+   $max = max($countVal);
+   $itemAA = [];
+   foreach ($countVal as $key => $value) {
+      if ($value == $max) {
+         array_push($itemAA,$key);
+      }
+   }
+   echo min($itemAA);
+}
+// $tot_ar = trim(fgets(STDIN));
+// $listAr = trim(fgets(STDIN));
+// MigratoryBird($tot_ar,$listAr);
 ?>
