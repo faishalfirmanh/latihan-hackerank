@@ -311,47 +311,32 @@ function breakingWordRecord($input){
 //https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem
 
 
-function theBirddayBar($number){
-   $list = trim(fgets(STDIN));
-   $expect = trim(fgets(STDIN));
-   $to_arr = explode(" ",$list);
-   $to_arr_expect = explode(" ",$expect);
+function theBirddayBar($s, $d, $m){
 
-   if (count($to_arr) != $number) {
-      print_r("ERROR NOT SAME");
-      exit();
-   }
-
-   if (count($to_arr_expect) != 2) {
-      print_r("ERROR expect must be 2");
-      exit();
-   }
-
-   $value_must = $to_arr_expect[0];
-   $list_item_plus = $to_arr_expect[1];
-   
-   $val_ori = array();
-   $val_prev = array();
-   $val_next = array();
-   $res = array();
-   for ($index=0; $index <count($to_arr) ; $index++) { 
-       $val_item = $to_arr[$index];
-       $prev = $to_arr[$index] == $to_arr[0] ? $to_arr[$index-0] : $to_arr[$index-1];
-       $next = $to_arr[$index] == $to_arr[count($to_arr)-1] ? $to_arr[$index+0] : $to_arr[$index+1];
+   //d : hasil 
+   //m : berapa bilangan
+   var_dump($s);
+   echo "<br>"."<br>";
+   $angk = 0;
+   for ($i=0; $i < count($s) ; $i++) { 
+      for ($a=$i+1; $a < count($s) ; $a++) { 
+         $res = $s[$i] + $s[$a];
+         if ($res == $d) {
+            echo ".index ke ".$s[$i]." | ".$s[$a] ." == ".$res;
+            echo "<br>";
+         }
         
-       array_push($res, $val_item);
-       array_push($res, $val_prev);
-         
-       
+      }
       
    }
-   $example = array(33,43,34,55 ,34);
-   $total_all = array_sum($example);//menjumlahkan semua array
-   $total_each = count($example);
+   
    
 }
-// $length = trim(fgets(STDIN));
-// theBirddayBar($length);
+// $arr = [1, 2 ,1, 3, 2];
+// $res = 3;
+// $item = 2;
+
+// theBirddayBar($arr,$res,$item);
 //https://www.hackerrank.com/challenges/the-birthday-bar/problem?isFullScreen=true /-notok
 
 function findDigits($n){
@@ -915,4 +900,58 @@ function MigratoryBird($tot,$list){
 // $tot_ar = trim(fgets(STDIN));
 // $listAr = trim(fgets(STDIN));
 // MigratoryBird($tot_ar,$listAr);
+
+//https://www.hackerrank.com/challenges/kangaroo/problem NOK SOLVED
+function JumpKangguru($inpt){
+    $toArr = explode(" ",$inpt);
+
+    if (count($toArr) !== 4) {
+      echo "HARUS 4";
+      die();
+    }
+
+    $index1 = $toArr[0];
+    $kang1 = (int) $index1 > $toArr[1] ? $index1 - $toArr[1] : $toArr[1] - $index1;
+    $kang2 = (int) $toArr[2] > $toArr[3] ? $toArr[2] - $toArr[3] : $toArr[3] - $toArr[2];
+
+    if ($toArr[2] > $toArr[0] && $toArr[3] > $toArr[1]) {
+      echo "NO";
+      die();
+    }
+
+    if ($toArr[1] - $toArr[3] == 0) {
+      echo "NO";
+      die();
+    }
+
+   $lompatA = [];
+ 
+
+   $lompatB = [];
+   
+   for ($b=$toArr[0]; $b <= 10000; $b+=$toArr[0]) { 
+      array_push($lompatA,$b);
+    }
+   
+    for ($b2=$toArr[2]; $b2 <= 10000 ; $b2+= $toArr[3]) { 
+      array_push($lompatB,$b2);
+    }
+
+
+
+   $difference = array_intersect($lompatA, $lompatB);
+
+   //var_dump($difference);
+   if (!empty($difference)) {
+      echo "YES";
+   } else {
+      echo "NO";
+   }
+   
+}
+
+// $tot_ar = trim(fgets(STDIN));
+// $tot_ar = "1928 4306 5763 4301";
+// JumpKangguru($tot_ar);
+
 ?>
