@@ -901,7 +901,7 @@ function MigratoryBird($tot,$list){
 // $listAr = trim(fgets(STDIN));
 // MigratoryBird($tot_ar,$listAr);
 
-//https://www.hackerrank.com/challenges/kangaroo/problem NOK SOLVED
+//https://www.hackerrank.com/challenges/kangaroo/problem ok SOLVED
 function JumpKangguru($inpt){
     $toArr = explode(" ",$inpt);
 
@@ -910,47 +910,61 @@ function JumpKangguru($inpt){
       die();
     }
 
-    $index1 = $toArr[0];
-    $kang1 = (int) $index1 > $toArr[1] ? $index1 - $toArr[1] : $toArr[1] - $index1;
-    $kang2 = (int) $toArr[2] > $toArr[3] ? $toArr[2] - $toArr[3] : $toArr[3] - $toArr[2];
+   
+    $x1 = (int) $toArr[0];
+    $v1 = (int) $toArr[1];
+    $x2 = (int) $toArr[2];
+    $v2 = (int) $toArr[3];
 
-    if ($toArr[2] > $toArr[0] && $toArr[3] > $toArr[1]) {
-      echo "NO";
-      die();
-    }
-
-    if ($toArr[1] - $toArr[3] == 0) {
-      echo "NO";
-      die();
-    }
-
-   $lompatA = [];
  
 
-   $lompatB = [];
-   
-   for ($b=$toArr[0]; $b <= 10000; $b+=$toArr[0]) { 
-      array_push($lompatA,$b);
+    if ($x2 > $x1 && $v2 > $v1) {
+       echo "NO cok";
+       die();
+    } 
+
+    
+    $jump1 = [];
+    for ($i=$x1; $i <= 10000 ; $i+= $v1) { 
+      $jump1[] = $i;
     }
-   
-    for ($b2=$toArr[2]; $b2 <= 10000 ; $b2+= $toArr[3]) { 
-      array_push($lompatB,$b2);
-    }
 
-
-
-   $difference = array_intersect($lompatA, $lompatB);
-
-   //var_dump($difference);
-   if (!empty($difference)) {
-      echo "YES";
-   } else {
-      echo "NO";
+    $output = "NO";
+    for ($j=$x2; $j <= 10000 ; $j+= $v2) { 
+      foreach ($jump1 as $key => $value) {
+         if ($j == $value) {
+            $output = "Yess boss";
+         }
+      }
+     
    }
+
+   if (($x1 + $v1) == ($x2+$v2)) {
+      $output = "Yes";
+   }
+  
+   
+   $i = 10000;
+   while ($i >= 0) {
+    if (($x1 + $v1) === ($x2 + $v2)) {
+        echo "YES";
+        die();
+    }
+    else {
+        $x1 = $x1 + $v1;
+        $x2 = $x2 + $v2;
+    }
+    $i--;
+}
+echo "NO";
+   
+
+    
    
 }
 
 // $tot_ar = trim(fgets(STDIN));
+//$tot_ar = "1571 4240 9023 4234";
 // $tot_ar = "1928 4306 5763 4301";
 // JumpKangguru($tot_ar);
 

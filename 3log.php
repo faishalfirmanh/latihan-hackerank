@@ -176,6 +176,73 @@ function jumpingOnTheCloud($tot,$c){
 // $input =  trim(fgets(STDIN));
 //jumpingOnTheCloud($tot,$input);
 
+//https://www.hackerrank.com/challenges/tutorial-intro/problem?isFullScreen=true ->SOLCED ok
+//mencari index ke n
+function introTutorial($cari,$list){
+   $index = 0;
+   $result = 0;
+   for ($i=0; $i <count($list) ; $i++) { 
+      if ($cari == $list[$i]) {
+        $result+=$index;
+      }
+      $index++;
+   }
+
+   echo $result;
+}
+
+// $car = 4;
+// $list = [1, 4, 5, 7, 9, 12 ];
+// introTutorial($car,$list);
 //
+
+//https://www.hackerrank.com/challenges/chocolate-feast/problem?isFullScreen=true not ok
+function bungkusCoklat($n, $c, $m){
+   $totCoklat = [];
+   $listBungkus = [];
+
+   $sisa = $n % $c;
+   $coklatDidapat = 0; //cokalt pertama didapat & bungkus pertama,
+   if ($sisa > 0) {
+     $pp = $n - $sisa;
+     $belipertama = $pp / $c;
+     $coklatDidapat += $belipertama;
+   }else{
+     $coklatDidapat = $n / $c;
+   }
+
+   // if ($m > $coklatDidapat) { //jika harga tiap bungkus lebih besar dari pada bungkus yang didapat
+   //    $totalSemuaCoklatDimakan = $coklatDidapat;
+   // }else{
+      $aa = 0;
+      $sisa = 0;
+      while($coklatDidapat >= $m) {
+       
+         if ($coklatDidapat % $m > 0) {
+           $sisa = $coklatDidapat % $m;
+           $tukarke1 = $coklatDidapat / $m;
+           echo "ada sisa bungkus " .$coklatDidapat ."\n";
+         }else{
+            $res = $coklatDidapat + ( $coklatDidapat / $m);
+            echo "tanpa sisa hanya dapat ". $res;
+         }
+
+
+         
+         //echo " $coklatDidapat - $aa ini m =  $m"."\n";
+         $coklatDidapat-=$m;
+         $aa++;
+       
+      }
+      $totalSemuaCoklatDimakan = 1111;
+   //}
+
+   // echo "cobakk";
+ 
+   
+}
+
+//bungkusCoklat(15,3, 2);
+
 
 ?>
