@@ -97,6 +97,28 @@ function removeDuplicate($nums){
 // $arr = [0,0,1,1,1,2,2,3,3,4];
 // removeDuplicate($arr);
 
+//https://leetcode.com/problems/number-of-good-pairs/ ->ok solved
+//cari semua bilangan kembar sama,
+function numberOfGoodpain($ar1){
+    $pair = [];
+    $tot = 0;
+    for ($i=0; $i <count($ar1) ; $i++) { 
+        for ($j=0; $j <count($ar1) ; $j++) { 
+            if ($i !== $j) {
+                if ($ar1[$i] == $ar1[$j] && $j < $i) {
+                    $pair[] = [$ar1[$i],$ar1[$j]];
+                    $tot++;
+                }
+            }
+            
+           
+        }
+    }
+    //echo $tot;
+}
+
+// $in = [1,2,3];
+// numberOfGoodpain($in);
 
 
 ?>
