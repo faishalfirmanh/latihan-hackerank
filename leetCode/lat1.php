@@ -120,5 +120,52 @@ function numberOfGoodpain($ar1){
 // $in = [1,2,3];
 // numberOfGoodpain($in);
 
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/ //not solved time limit
+//pilih item  terkecil (a)
+//pilih item terbesar (b), dengan sarat index > a
+//result jika ada b-a, jika tidak 0
+function buyAndSell($list){
+  
+    echo implode(" ",$list)."\n"."\n";
+  
+    $jual = [];
+   
+    for ($i=0; $i <count($list) ; $i++) { 
+        for ($j=0; $j <count($list) ; $j++) { 
+            if ($j !== $i ) {
+                if ($list[$i] < $list[$j]) {
+                    if ($i < $j) {
+                        $tot = $list[$j] - $list[$i]; 
+                        $jual[] = $tot;
+                    }
+                    
+                }
+               
+            }
+            
+        }
+    }
+
+    $cek = count($jual) > 0 ? max($jual) : 0;
+    echo $cek;
+   
+   
+}
+// $a =  [7,6,4,3,1];
+// buyAndSell($b);
+
+//https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/ solved ok
+function mostWordsFound($sentences) {
+    $itemTotal = [];
+    foreach ($sentences as $key => $value) {
+        $toNum = explode(" ",$value);
+        $itemTotal[] = count($toNum);
+    }
+   echo max($itemTotal);
+}
+// $word =  ["alice and bob love leetcode", "i think so too", "this is great thanks very much"];
+// mostWordsFound($word);
+
+
 
 ?>
