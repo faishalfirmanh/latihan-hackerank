@@ -269,16 +269,53 @@ function restoreString($s,$indices){ //solved
     }
 
     $com = array_combine($indices,$toAr);
+    $ll = []; // manual pengganti array_combine
+    foreach ($toAr as $key => $value) {
+       $ll[$indices[$key]] = $value;
+    }
     $ccc = [];
     for ($i=0; $i < count($com) ; $i++) { 
        $ccc[] = $com[$i];
     }
     $toStr = implode("",$ccc);
     echo $toStr;
+    // var_dump($ll);
 }
 
 // $str = "codeleet";
 // $arr =  [4,5,6,7,0,2,1,3];
 // restoreString($str,$arr);
+
+//11.22
+function vowelStrings($words, $left, $right) { //solved ok
+//https://leetcode.com/problems/count-the-number-of-vowel-strings-in-range/submissions/1169419385/
+//cari string yang ada huruf konsonan, totalkan. tiap kata
+    $arr = ['a', 'e', 'i', 'o', 'u'];
+    $tot = 0;
+    $itemWord = 0;
+    for ($i=$left; $i <= $right ; $i++) { //looping kata berdasarakan range
+        $itemWord++;
+        $str_arr =  str_split(strtolower($words[$i]) ,1);
+        for ($j=0; $j <count($str_arr) ; $j++) {  //looping string word ke huruf
+            $first = $str_arr[0];
+            $last = $str_arr[count($str_arr)-1];
+            if ($j == 0 || $j == count($str_arr)-1 && $i > $j) { //cek huruf pertama dan terakhir
+                if (in_array($first, $arr) && in_array($last, $arr) ) { //cek huruf konsonan
+                      $tot++;
+                    //echo "i $i j: $j ".$first ."| ".$last . " | kata ".strtolower($words[$i])." | "."\n";
+                    break;// menghindari douplicate i
+                }
+              
+            }
+           
+        }
+    }
+   
+
+    echo $tot;
+        
+}
+// $word =["hey","aeo","mu","ooo","artro"] ;
+// vowelStrings($word,1,4);
 
 ?>
