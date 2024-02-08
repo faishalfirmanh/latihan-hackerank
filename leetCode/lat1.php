@@ -166,6 +166,119 @@ function mostWordsFound($sentences) {
 // $word =  ["alice and bob love leetcode", "i think so too", "this is great thanks very much"];
 // mostWordsFound($word);
 
+function isPalindrome($x) { //palindrome number //ok solved
+   
+    $toArr = str_split($x,1);
+    $last = count($toArr);
+    $tot = 0;
+    for ($i=0; $i <count($toArr) ; $i++) { 
+        $last--;
+        if ($toArr[$i] == $toArr[$last] && $last < $i) {
+            $tot++;
+        }
+    }
+   
+    $pasangan = count($toArr) / 2;
+    if ($tot == floor($pasangan)) {
+       echo "sama";
+    }else{
+        echo "tidak sama";
+    }
+   
+}
+// isPalindrome(1233217);
+//https://leetcode.com/problems/roman-to-integer/ not solved
+//input string //I, V, X, L, C, D and M.
+function romanToInt($s) {
+    $valItem = [
+        "C"=>100,
+        "D"=>500,
+        "I"=>1,
+        "L"=>50,
+        "M"=>1000, 
+        "V"=>5,
+        "X"=>10,
+    ];
+    $convert = array_values($valItem);
+    echo "s ".$s ."\n";
+    //var_dump($convert);
+    echo "\n"."\n";
+    $toArr = str_split($s,1);
+    $totItem = [];
+    for ($i=0; $i <count($toArr) ; $i++) { 
+        $item = strtoupper($toArr[$i]);
+        $cekNextKey = $i !== count($toArr) -1 ? $i+1 : $i;
+        $keyNextNya = $toArr[$cekNextKey];//C
+        $lastItemAnggota = count($valItem)-1;
+        $lastItemInput = count($toArr)-1;
+        
+        if (isset($valItem[$item])) {
+            $indexOri = array_search($valItem[$item], $convert);
+            $NextIndexOri =  array_search($valItem[$toArr[$cekNextKey]], $convert);
+            $nextKeyOri = $valItem[$toArr[$cekNextKey]];
+            
+            if ($i == 0) {
+                $totItem[] = $valItem[$item];
+                echo "ini index 0 ".$valItem[$item] ."\n";
+            }else{
+              
+                if ($indexOri > $NextIndexOri) {
+                    $res = $nextKeyOri - $valItem[$item];
+                    if ($res > 0) {
+                        $totItem [] = $res;
+                        echo "lebih dari  ".$valItem[$item] ."-".$nextKeyOri ."= $res"."\n";
+                    }else{
+                        $totItem [] = $valItem[$item];
+                        echo "moree $indexOri - $NextIndexOri"."\n";
+                    }
+                  
+                    
+                }
+                else if ($NextIndexOri > $indexOri){
+                    $res = $nextKeyOri - $valItem[$item];
+                    if ((int)$res > 0) {
+                        $totItem [] = $res;
+                        echo "kurang dari ".$nextKeyOri ."-".$valItem[$item]."= $res"."\n";
+                    }
+                  
+                } else if ($indexOri == $NextIndexOri && $i !== $lastItemInput){
+                    //$res = $nextKeyOri + $valItem[$item];
+                    $totItem [] = $valItem[$item];
+                    echo "SAMA dengan dari ".$indexOri ."-".$NextIndexOri." key now $item key next $keyNextNya "."= $indexOri."." last item ".$lastItemInput."\n";
+                }
+            }
+        //    $totItem[] = $valItem[$item];
+           // echo "$i item ".$item ."| key "."|valNext "."| index ".$indexOri ."- indexNext ".$NextIndexOri."| valOri ".$valItem[$item]."       | val next ".$nextKeyOri."\n";
+       }
+    }
 
+    echo "\n"."\n";
+    var_dump($totItem);
+    echo count($totItem) > 0 ? array_sum($totItem) : 0;
+   
+}
+
+// romanToInt("LVIII");
+
+function restoreString($s,$indices){ //solved
+    $toAr =  str_split($s,1);
+
+    if (count($indices) !== count($toAr)) {
+       echo "not same";
+       die();
+    }
+
+    $com = array_combine($indices,$toAr);
+    $ccc = [];
+    for ($i=0; $i < count($com) ; $i++) { 
+       $ccc[] = $com[$i];
+    }
+    $toStr = implode("",$ccc);
+    echo $toStr;
+}
+
+// $str = "codeleet";
+// $arr =  [4,5,6,7,0,2,1,3];
+// restoreString($str,$arr);
 
 ?>
