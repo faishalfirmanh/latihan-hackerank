@@ -318,4 +318,35 @@ function vowelStrings($words, $left, $right) { //solved ok
 // $word =["hey","aeo","mu","ooo","artro"] ;
 // vowelStrings($word,1,4);
 
+//https://leetcode.com/problems/counting-words-with-a-given-prefix/description/
+//cari prefix (huruf pertama) pada list kata array, -> jika ada di totalkan
+function prefixCount($words, $pref) { //solved ok
+   
+    $arr_frefix = str_split($pref,1);
+    $tot_pref = count($arr_frefix);
+    $tot = 0;
+    foreach ($words as $key => $value) {
+        $arr_word = str_split($value ,1);
+        for ($i=0; $i < $tot_pref ; $i++) { 
+            // $letter_word = strtolower($arr_word[$i]);
+            // $letter_pref = strtolower($arr_frefix[$i]);
+            $count_word = count($arr_word)+1;
+            $word_remove = substr_replace($value, '', $tot_pref, $count_word - $tot_pref); //ambil huruf pertama -> total prefix
+            if ($word_remove == $pref) {
+                $tot++;
+                break;
+            }
+           
+        }
+       
+    }
+
+    echo "".$tot;
+        
+}
+
+// $word = ["leetcode","win","loops","success"];
+// $pref  = "code";
+// prefixCount($word,$pref);
+
 ?>
