@@ -349,4 +349,50 @@ function prefixCount($words, $pref) { //solved ok
 // $pref  = "code";
 // prefixCount($word,$pref);
 
+//https://leetcode.com/problems/form-smallest-number-from-two-digit-arrays/ 
+//cari bilangan terkecil di 2 array, apa bilsa sama print 1
+//jika tidak sama abmil terkecil dari masing2 array, lalau di gabung
+//6.05
+function minNumber($nums1, $nums2) { //solved ok
+
+    $min1 = min($nums1);
+    $min2 = min($nums2);
+
+    $ada = [];
+    $tidak = [];
+    for ($i=0; $i < count($nums1) ; $i++) { 
+        for ($j=0; $j < count($nums2) ; $j++) { 
+            $cek = in_array($nums1[$i],$nums2,TRUE) ? 1 : 0;
+            if ($cek > 0) {
+                //echo $nums1[$i] . " ada |".$cek ."\n";
+                $ada[] = $nums1[$i];
+                break;
+            }else{
+                if($nums1[$i] == $min1 && $nums2[$j] == $min2){
+                    $res =  $min1 > $min2 ?  $min2.$min1 : $min1.$min2;;
+                    //echo $res . "tida ada |".$cek ."\n";
+                    $tidak[]= $res;
+                    break;
+                }
+            }
+            
+        }
+    }
+
+    if(count($ada) > 0 && count($tidak) >0){
+        echo min($ada);
+    }elseif(count($ada)<1 && count($tidak) > 0){
+        echo min($tidak);
+    }else{
+         if (count($ada) > 0) {
+           echo min($ada);
+        }
+    }
+        
+}
+
+// $ar1 =[7,5,6];
+// $ar2 =  [1,4];
+// minNumber($ar1, $ar2);
+
 ?>
