@@ -395,4 +395,201 @@ function minNumber($nums1, $nums2) { //solved ok
 // $ar2 =  [1,4];
 // minNumber($ar1, $ar2);
 
+//6.10
+//jika target ada kembalikan lebih besar
+//jika tidak ada kembalikan karakter huruf pertama
+//https://leetcode.com/problems/find-smallest-letter-greater-than-target/submissions/1171842296/
+function nextGreatestLetter($letters, $target) { // not solved
+    $letterAll = array("a","b","c","d","e",
+                       "f","g","h","i","j",
+                       "k","l","m","n","o",
+                       "p","q","r","s","t",
+                       "u","v","w","x","y","z");
+    strtolower($target);
+    sort($letters);
+        $huruf = [];
+        $pp = 1;
+       // echo "target ".$target ."\n"."\n";
+        for ($i=0; $i <count($letters) ; $i++) { 
+            for ($j=0; $j <count($letterAll) ; $j++) { 
+                $indexTarget = array_search($target,$letterAll);//index target
+               
+                $cek = in_array($target,$letters,TRUE) ? 1 : 0;
+                if ($target == $letters[$i]) { //jika huruf ada, maka next huruf paling besar
+                    $nextTarget = $indexTarget + ($pp++);
+                    $cekFinalNext = $nextTarget > 24 ? 25 : $nextTarget; 
+                    //index maxValue
+                    $maxIndexValueNow = array_search($letters[count($letters)-1],$letterAll);           
+                    if (in_array($letterAll[$cekFinalNext],$letters,TRUE)) {
+                        $huruf[] = $letterAll[$cekFinalNext];
+                        echo "huruf  : ". $letters[$i] ."| index target ".$letterAll[$cekFinalNext] ."| " ."\n";
+                    }
+                    else{
+                        if ($cekFinalNext > $maxIndexValueNow) {
+                           echo "tidak ada ".$cekFinalNext ."\n";
+                            $huruf[] = $letters[0];
+                       }
+                       
+                    }
+                  
+                  
+                }else{
+                    //pp max = count(letter);
+                    $cekNext = $j == count($letterAll) ? $j - 1 : $j;
+                    //jika next ada di letter, dan tidak ada.
+                    if ($letterAll[$cekNext] == $letters[$i] && $cek == 0) {
+                        if ($indexTarget != 25) { //jika tidak z
+                            $aa = ($pp++) + $indexTarget;
+                            if ($aa >= 25) { //jika target posisinya paling besar && tidak ada di list letter
+                                $huruf[] = $letters[0];
+                                echo "target posisinya paling besar && tidak ada di list letter"."\n";
+                            }else{
+                                if (in_array($letterAll[$aa],$letters,TRUE)) { //jika huruf tidak ada
+                                    $huruf[] =  $letterAll[$aa];
+                                    echo  $letters[$i] ."- indext huruf ".$aa ." = $letterAll[$aa]"  ."\n";
+                                }
+                            }
+                              
+                        }else{ //jika huruf z
+                            $huruf[] = $letters[0];
+                            echo "z "."\n";
+                        }
+                        
+                    }else{
+                        $nextTarget = $indexTarget + ($pp++);
+                        $cekFinalNext = $nextTarget > 24 ? 25 : $nextTarget; 
+                        $maxIndexValueNow = array_search($letters[count($letters)-1],$letterAll);   
+                        if ($cekFinalNext > $maxIndexValueNow) {
+                            $huruf[] = $letters[0];
+                            echo "463 "."\n";
+                        }
+                        
+                       
+                    }
+                    
+                }
+                //echo "letter item ".$letters[$i] ."| ".$nextLetter ."|".$letters[$i]."\n";
+            }
+          
+        }
+       
+        if (count($huruf) > 0) {
+            echo $huruf[0];
+        }
+       
+}
+// $ar = ["c","f","j"];//["q","c","j","b","h","l","g"];
+// $target = "d"; //c
+// nextGreatestLetter($ar, $target);
+
+//https://leetcode.com/problems/delete-columns-to-make-sorted/description/ not solved
+//looping, luar
+//looping item.
+//sort array
+
+function minDeletionSize($fff) {
+    $letterAll = array("a","b","c","d","e",
+                       "f","g","h","i","j",
+                       "k","l","m","n","o",
+                       "p","q","r","s","t",
+                       "u","v","w","x","y","z");
+    $firstLoop = 0;
+    // sort($fff);
+    $strs = [];
+    for ($ar1=0; $ar1 < count($fff) ; $ar1++) { 
+        $stringParts = str_split($fff[$ar1]);
+        sort($stringParts);
+        $finalSort = implode($stringParts);
+        $strs[] = $finalSort;
+    }
+    
+   
+    for ($i=0; $i < count($strs) ; $i++) { 
+        $toArr1 =  str_split($strs[$i],1);
+        sort($toArr1);
+        $axx = implode(" ",$toArr1);
+        $aa = str_replace(' ', '', $axx);
+        $str2 =  str_split($aa,1);
+        $nextIndex = count($str2);
+        for ($j=0; $j < count($str2); $j++) { 
+            $nextIndex--;
+            $cekJNext = $j >= count($str2)-1 ? $j : $j+1; //jika last index, panggil indexnya sendiri
+            $cekOriginIndext = array_search(strtolower($str2[$j]),$letterAll);
+            $cekOriginIndextNext = $cekOriginIndext >= count($letterAll) ? 
+                array_search($str2[count($letterAll)-1],$letterAll) : $cekOriginIndext;
+            $cekLastIndexIsNotZ = $cekOriginIndextNext >= 25 ? 25 : $cekOriginIndextNext+1;
+            //next item
+            //$cekItemLastJ = array_search(strtolower($str2[$cekJNext]),$letterAll);
+            
+            $exsist = isset($str2[$j+1]) ? $str2[$j+1] : $letterAll[$cekLastIndexIsNotZ];//cek index di huruf
+            $cekPrev = $j == 0 ? 0 : $j-1;
+            if ( $j >= count($str2)-1 && $i != count($strs)-1) {
+                
+               
+                $aa = $strs[$i+1][0]; //cek index di item / dibawahnya
+                $prev = $strs[$i][$cekPrev];
+                
+                 
+               
+            }else{
+                $aa = $exsist;
+                if ($j == 0 && $i == 0) { //jika index 0 0
+                    $exsistPrev =  isset($str2[$cekPrev]) ? $str2[$cekPrev] : $letterAll[$cekLastIndexIsNotZ];
+                }else if($j == 0 && $i != 0){
+                    $exsistPrev = $strs[$i-1][$j-1];
+                }else{
+                    $exsistPrev = $strs[$i][$j-1];
+                }
+                
+                $prev = $exsistPrev;
+              
+            }
+            
+
+            $originIndexPrev = array_search(strtolower($prev),$letterAll);
+        //    if ($exsist != $aa ) {//$cekOriginIndext < $originIndexPrev
+        //         $firstLoop++;
+
+                echo "$prev | loop1 $i  |.loop 2 ".$str2[$j] ."->".$strs[$i]."->".$exsist ." -++".$str2[$cekJNext]." | prev .$originIndexPrev - now $cekOriginIndext  . $aa"."\n";
+            //     break;
+            // } else if ($cekOriginIndext < $originIndexPrev && $i > 1){
+            //     $firstLoop++;
+            // }
+           
+           
+        }
+       
+    }
+
+    echo $firstLoop;
+}
+//$arx = ["cba","daf","ghi"];
+//$arx = ["a","b"];
+//$arx=  ["zyx","wvu","tsr"];//  ["cba","fde","lon","xzwy","igh"];
+// $arx = ["rrjk","furt","guzm"];
+// minDeletionSize($arx)
+
+//6/36
+//https://leetcode.com/problems/find-words-containing-character/submissions/1172697794/
+//cari huruf di array, ada di index array pertama, ke berapa.
+function findWordsContaining($words, $x) {
+
+    $tot = [];
+    for ($i=0; $i < count($words) ; $i++) { 
+       $strAr = str_split($words[$i],1);
+       for ($j=0; $j < count($strAr) ; $j++) { 
+          if ($strAr[$j] === $x ) {
+             $tot[] = $i;
+             break;
+          }
+       }
+     
+    }
+    var_dump($tot);
+        
+}
+
+// $wordlArr =["abc","bcd","aaaa","cbc"];
+// $find = "a";
+// findWordsContaining($wordlArr,$find);
 ?>
