@@ -592,4 +592,68 @@ function findWordsContaining($words, $x) {
 // $wordlArr =["abc","bcd","aaaa","cbc"];
 // $find = "a";
 // findWordsContaining($wordlArr,$find);
+//https://leetcode.com/problems/find-the-middle-index-in-array/description/ not solved
+function findMiddleIndex($nums) {
+    rsort($nums);
+    //echo count($nums) % 2 ."\n";
+    //var_dump(sort($nums));
+    echo "\n";
+    $maxLooping = count($nums)-1;
+    $tot = 0;
+    for ($i=0; $i <count($nums) ; $i++) { 
+        $stengahNext = floor(count($nums) / 2) + 1;
+        $stengahPrev = floor(count($nums) / 2) - 1;
+        $cekNextBawah = $i == count($nums)-1 ? $i : $i +1;
+        if (count($nums) % 2 != 0) {
+            for ($j=$nums[$i]; $j <= $stengahNext ; $j++) { 
+                if ($j != $i ) {
+                    echo "$i | ".$nums[$i]."= $maxLooping |nextbawah : " ."\n";
+                    $tot +=$nums[$i];
+                    break;
+                }
+              
+            }
+            $maxLooping--;
+        }
+    }
+    $before = $tot;
+
+        
+}
+
+// $arrNum = [1,-1,4];
+// findMiddleIndex($arrNum);
+
+//https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/submissions/1174127117/
+//cari array words index ke 0, apa sama dengan s
+function isAcronym($words, $s) { //ok solved
+    $stringToar = str_split(strtolower($s),1);
+
+   
+    $totWord = count($words)-1;
+    $totStr =  count($stringToar)-1;
+    $tot = 0;
+    for ($i=0; $i < count($words) ; $i++) { 
+        $toArrWords = str_split(strtolower($words[$i]),1);
+        for ($j=0; $j < count($toArrWords) ; $j++) { 
+            if ($totWord == $totStr) {
+                if ($stringToar[$i] == $words[$i][0]) {
+                    $tot ++;
+                    break;
+                 }
+               
+           }
+        }
+       
+    }
+    $cek = count($stringToar) == $tot ? "true" : "false";
+    echo $cek;
+
+    
+}
+
+// $ar =  ["afqcpzsx","icenu"];
+// $kata = "yi";
+// isAcronym($ar,$kata);
+
 ?>
