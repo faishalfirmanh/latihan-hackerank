@@ -656,4 +656,27 @@ function isAcronym($words, $s) { //ok solved
 // $kata = "yi";
 // isAcronym($ar,$kata);
 
+//https://leetcode.com/problems/unique-number-of-occurrences/description/
+function uniqueOccurrences($arr) {//solved ok
+    //cek array muncul berapa banyak, jika totalnya beda beda, bernilai true
+    $aa = array_count_values($arr);
+    $arrCount = [];
+    foreach ($aa as $key => $value) {
+        $arrCount[] = $value;
+    }
+
+    $totArrOriginal = count($arrCount);
+    $uniQuec = array_unique($arrCount);//tampil array yang nilainya beda
+    if (count($uniQuec) == $totArrOriginal) {
+        echo "true";
+    }else{
+        echo "false";
+    }
+    
+}
+// $pp  = [1,2,3];
+// uniqueOccurrences($pp);
+
+
+
 ?>
