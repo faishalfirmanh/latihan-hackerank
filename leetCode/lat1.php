@@ -677,6 +677,69 @@ function uniqueOccurrences($arr) {//solved ok
 // $pp  = [1,2,3];
 // uniqueOccurrences($pp);
 
+//https://leetcode.com/problems/plus-one/ not solved
+function plusOne($digits) {
 
+    $totArr = count($digits);
+    $newArr = [];
+    $toStr = implode(" ",$digits);
+    echo $toStr ."\n"."\n";
+    for ($i=0; $i < $totArr  ; $i++) { 
+        if (count($digits) > 1) { //jika item array > 1
+            $prevIndex = $i > 0 ? $i-1 : $i;
+            $lastPlus1 = $i == $totArr-1 ? $digits[$i] + 1 : $digits[$i];
+            //jika last item >= 9 (belum ditambah);
+            if ($digits[$totArr-1]>= 9) {
+                $prevPlus = $digits[$prevIndex]+1;
+                $val_Now = $digits[$i]+1; //val sekarang + 1
+                $res_more_than9 = str_split($val_Now,1);//convert hasil penjumlahan to array
+                $cekValNow =    (int) $res_more_than9[count($res_more_than9) - 1];
+                
+                echo "i ".$i ." | val ori $digits[$i] | valPlus1 $val_Now . $cekValNow  ";
+               
+                echo "\n";
+                //$newArr[$i] =  $cekValNow;
+                
+            }else{
+                $newArr[$i] = $lastPlus1;
+            }
+        }else{
+            $firtItem =  $digits[$i];
+            if($firtItem + 1 > 9){ //jika hasi lebih dari 1 digit
+                $result = $firtItem + 1;
+                $toArrResult = str_split($result,1);
+                for ($j=0; $j < count($toArrResult) ; $j++) { 
+                    $newArr[$j] = $toArrResult[$j];
+                }
+            }else{
+                $newArr[$i] = $digits[$i]+1;
+            }
+        }
+       
+    }
+   // var_dump($newArr);
+        
+}
+// $digits =[6];
+//$digits = [6,9,9,9,11];//7,0,0
+//$digits = [9,9,9];//1,0,0,0
+// $digits = [9,3,4,9,9];
+// plusOne($digits);
 
+//https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/description/
+
+function arrayStringsAreEqual($word1, $word2) {
+    $strWor1 = implode("",$word1);
+    $strWor2 = implode("",$word2);
+    
+    if ($strWor1 == $strWor2) {
+        return true;
+    }else{
+        return false;
+    }
+
+}
+// $wo1 =["abc", "d", "defg"];
+// $wor2 = ["abcddefg"];
+// arrayStringsAreEqual($wo1,$wor2);
 ?>
