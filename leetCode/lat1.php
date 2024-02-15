@@ -742,4 +742,25 @@ function arrayStringsAreEqual($word1, $word2) {
 // $wo1 =["abc", "d", "defg"];
 // $wor2 = ["abcddefg"];
 // arrayStringsAreEqual($wo1,$wor2);
+
+//https://leetcode.com/problems/sum-of-unique-elements/submissions/1176465174/
+//
+function sumOfUnique($nums) {//solved ok.
+    //cari array yang tidak double
+    //jumlahkan array tersebut
+    $uniQuec = array_unique($nums); 
+    $countVal = array_count_values($nums);
+    $aa = 0;
+    foreach ($countVal as $key => $value) {
+        if ($value < 2) {
+            $aa+=$key;
+           // echo $value ." key ".$key ."\n";
+        }
+       
+    }
+    echo $aa;
+}
+
+// $arrUn = [1,1,1,1,1,1,2,3,4,5];
+// sumOfUnique($arrUn);
 ?>
