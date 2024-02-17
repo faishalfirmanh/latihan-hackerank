@@ -763,4 +763,79 @@ function sumOfUnique($nums) {//solved ok.
 
 // $arrUn = [1,1,1,1,1,1,2,3,4,5];
 // sumOfUnique($arrUn);
+
+function checkTotArray($arr){
+    $aa = 0;
+    $listAr = [];
+    for ($i=0; $i <count($arr) ; $i++) { 
+        for ($j=0; $j < count($arr) ; $j++) { 
+            if ($arr[$i] == $arr[$j]) {
+                // print_r($arr[$i]);
+                 echo "<=>$i - $arr[$i] | j $j - $arr[$j] = "."\n";
+                 break;
+                // if(!isset($listAr[$arr[$i]]) ){
+                //     $listAr[$arr[$i]]++;
+                //     break;
+                //  }else{
+                   
+                //  }
+               
+               
+            }
+           
+        }
+        
+        
+    }
+    echo "\n"."\n";
+    var_dump($listAr);
+}
+// $arrUn = [1,1,2,3,4,5,1,1,2,13];
+// checkTotArray($arrUn);
+
+function singleNumber($nums) {
+    //solved oke, cari array yang single
+    $countVal = array_count_values($nums);
+    $listAr = [];
+    foreach ($countVal as $key => $value) {
+       if ($value < 2 ) {
+         $listAr[] = $key;
+         break;
+       }
+    }
+   return $listAr[0];
+
+
+}
+
+// $numsAr =[4,1,2,1,2];
+// singleNumber($numsAr);
+
+//https://leetcode.com/problems/split-strings-by-separator/submissions/1178310371/
+function splitWordsBySeparator($words, $separator) { //solved ok
+    //cari string array yang ada character tertentu,
+    //jika ada di jadikan new array
+     
+    $newArr = [];
+    for ($i=0; $i <count($words) ; $i++) { 
+        if (strpos($words[$i], $separator) !== false) {
+            $toArr = explode($separator,$words[$i]);
+            for ($j=0; $j <count($toArr) ; $j++) { 
+                $cekString = empty($toArr[$j]) ? "0" : "1";
+                if ($cekString == "1") {
+                    $newArr[] = $toArr[$j];
+                }
+               
+            }
+        }else{
+            $newArr[] = $words[$i];
+        }
+      
+    }
+    return $newArr;
+}
+
+// $arr = ["|||"];
+// $split ="|";
+// splitWordsBySeparator($arr,$split);
 ?>
