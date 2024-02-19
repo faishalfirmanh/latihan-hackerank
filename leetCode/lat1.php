@@ -838,4 +838,112 @@ function splitWordsBySeparator($words, $separator) { //solved ok
 // $arr = ["|||"];
 // $split ="|";
 // splitWordsBySeparator($arr,$split);
+
+//https://leetcode.com/problems/sort-the-people/submissions/1179318006/
+//not solved
+function sortPeople($names, $heights) {
+    $totPeople = count($names);
+    $totHeight = count($heights);
+
+    //mencari array berpasangan urutkan berdasarkan heigth, print name
+    if ($totPeople == $totHeight) {
+        
+        $newArr = [];
+        for ($h=0; $h <count($heights) ; $h++) { 
+            $newArr[$names[$h]."-".$h] = $heights[$h];
+        }
+
+        arsort($newArr);
+        $finalName = [];
+        $index2 = 0;
+        echo $totPeople ."\n";
+        foreach ($newArr as $key => $value) {
+            $finalKey =  substr( $key, 0, -2);
+            if (in_array($finalKey, $names)) {
+               
+            }else{
+                $finalKey2 =  substr( $finalKey, 0, -1);
+                $finalKey = $finalKey2;
+            }
+           
+            if (in_array($finalKey, $names)) {
+                $finalName[] = $finalKey;
+            }
+           $index2++;
+           
+        }
+
+        print_r($finalName);
+    }
+   
+}
+// $orang =  ["ZNEUVTUVYVRMHFbaw","A","ADVLZLLPWNANjx","HZZJokcszj"];
+// $height = [61129,88518,96147,42505];
+// sortPeople($orang,$height);
+
+
+function findRelativeRanks($score) {
+   
+    $arrNew = [];
+    $max = max($score);
+    $min =  min($score);
+    $firstIndex = $score[0];
+    $newSortArray = [];
+    for ($i=0; $i < count($score)-1 ; $i++) { 
+        for ($j=0; $j <  count($score)-$i-1 ; $j++) { 
+            
+           
+        }
+     
+    }
+    var_dump($newSortArray);
+}
+// $lis =  [5,10,3,8,9,4];
+// findRelativeRanks($lis);
+
+//https://leetcode.com/problems/find-first-palindromic-string-in-the-array/description/
+//solved ok
+function firstPalindrome($words) {
+    $aa = 0;
+    $final = [];
+    for ($firts = 0; $firts < count($words); $firts++) {
+        $toArrValue = str_split($words[$firts],1);
+        $maxIndex = count($toArrValue)-1;
+        $pp = 0;
+        for ($i=0; $i <count($toArrValue) ; $i++) { 
+           if ($toArrValue[$i] == $toArrValue[$maxIndex]) {
+                $final[$firts] = $pp;
+                $pp++;
+            }
+          
+           $maxIndex--;
+          
+        }
+        $aa++;
+    }
+  
+    $finalResss = [];
+    foreach ($final as $key => $value) {
+       $resultSame = $value+1;
+       $originalSame = $words[$key];
+       if ($resultSame == strlen($originalSame)) {
+         $finalResss[] = $originalSame;
+       }
+     
+    }
+   
+      if (count($finalResss) > 0) {
+        var_dump($finalResss[0]);//return $final[0];
+    }else{
+        var_dump("");
+    }
+}
+
+// $arr =["dwbqx","axox","axa","zakaz","vydf","axboa"];
+// firstPalindrome($arr);
+
+
+
+
+
 ?>
