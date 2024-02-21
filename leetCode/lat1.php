@@ -942,8 +942,45 @@ function firstPalindrome($words) {
 // $arr =["dwbqx","axox","axa","zakaz","vydf","axboa"];
 // firstPalindrome($arr);
 
+//https://leetcode.com/problems/height-checker
+//ok solved
+//cek array asli urutkan, return total yang tidak sama
+function heightChecker($heights) {
+   
+    $array2Sort = array_merge(array(), $heights); 
+    //membuat duplicate array tanpa mengubah urutan array asli
+    sort($array2Sort);
+    $sum = 0;
+    for ($i=0; $i < count($array2Sort) ; $i++) { 
+        if ($array2Sort[$i] != $heights[$i]) {
+           // echo $array2Sort[$i] ."| original |".$heights[$i] ."\n";
+           $sum++;
+        }
+       
+    }
+    echo $sum;
 
+}
 
+// $heigher =[1,1,4,2,1,3];
+// heightChecker($heigher);
 
+//https://leetcode.com/problems/find-greatest-common-divisor-of-array
+function findGCD($nums) { //SOLVED OK
+    //Mencari bilang terbesar dari faktor list array terkecil dan terbesar
+    $max = max($nums);
+    $min = min($nums);
+    $listDevisor = [];
+    for ($i=1; $i <= 1000 ; $i++) { 
+        if ($max % $i == 0 && $min % $i == 0) {
+          $listDevisor[] = $i;
+        }
+    }
+    return max($listDevisor);
+   
+}
+
+// $cc = [3,3];
+// findGCD($cc);
 
 ?>
