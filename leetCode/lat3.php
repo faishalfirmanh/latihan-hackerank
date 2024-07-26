@@ -292,4 +292,69 @@ function maxFrequencyElements($nums) {
 // $num2 = [1,2,3,4,5];
 // maxFrequencyElements($num2);
 
+//https://leetcode.com/problems/delete-greatest-value-in-each-row/
+
+//not solved
+function deleteGreatestValue($grid) {
+
+    $pp = [];
+    for ($i=0; $i < count($grid) ; $i++) { 
+        $loop1 = $grid[$i];
+        for ($b=0; $b < count($loop1) ; $b++) { 
+           
+        }
+
+        $cek = $grid[0] > $grid[1] ? $grid[0] : $grid[1];
+        $pp[] = max($grid[$i]);
+        //var_dump($pp);   
+    }
+
+    $dua = [max($pp)];
+
+    var_dump($dua);
+    
+}
+// $kasa =  [[1,2,4],[3,3,1]];
+// $kasb =  [[7,4,2],[5,3,1]];
+// deleteGreatestValue($kasa);
+
+//https://leetcode.com/problems/left-and-right-sum-differences/description/
+// solved
+//
+function leftRightSum($arr){
+
+    $left = [];
+    $right = [];
+    $b = count($arr);
+    $cc = 0;
+    $bb =0;
+    for ($i=0; $i <count($arr) ; $i++) { 
+        $b--;
+        $left[0] = 0;
+        $right[0] = 0;
+        $cc += $arr[$i];
+        $bb += $arr[$b];
+        if (count($left) < count($arr)) {
+            $left[] = $cc;
+            $right[] = $bb;
+        } 
+    }
+    $reverse =   array_reverse($right);
+
+    $result =[];
+    for ($i=0; $i < count($arr) ; $i++) { 
+        $cekSelisih = $left[$i] > $reverse[$i] ? $left[$i]-$reverse[$i] : $reverse[$i]-$left[$i];
+        $result[] = $cekSelisih;
+    }
+    
+    return $result;
+   
+    
+
+}
+//left = [0,10,14,22]
+//right = [15,11,3,0]
+// $arr = [10,4,8,3];
+// leftRightSum($arr);
+
 ?>
