@@ -357,4 +357,66 @@ function leftRightSum($arr){
 // $arr = [10,4,8,3];
 // leftRightSum($arr);
 
+
+//https://leetcode.com/problems/majority-element/submissions/1351910898/
+//ok solved
+function majorityElement($nums) {
+    
+    $tot =  array_count_values($nums);
+    $max = max($tot);
+    $result = 0;
+    foreach ($tot as $key => $value) {
+        if ($value == $max) {
+            $result+=$key;
+        }
+    }
+
+    echo $result;
+  
+}
+// $majority = [3,2,3,3,3,3,3,2,2,2];
+// majorityElement($majority);
+
+
+//https://leetcode.com/problems/count-the-number-of-consistent-strings/
+function countConsistentStrings($allowed, $words) {
+        $to_arr = str_split($allowed);
+        $aa = [];
+        for ($i=0; $i <count($to_arr) ; $i++) { 
+            foreach ($words as $key => $value) {
+                $to_arr_words = str_split($value);
+                foreach ($to_arr_words as $key2 => $val_words) {
+                    if ($val_words == $to_arr[$i]) {
+                        $aa[] = $value;
+                    }
+                }
+               
+            }
+        }
+
+        print_r($aa);
+}
+
+// $aa = ["ad","bd","aaab","baa","badab"];
+// countConsistentStrings("abc",$aa);
+
+//var_dump(strspn("obadbasao", "so"));
+
+
+//https://leetcode.com/problems/the-two-sneaky-numbers-of-digitville/description/
+//ok solved
+function getSneakyNumbers($nums) {
+    $tot_ = array_count_values($nums);
+
+    $res = [];
+    foreach ($tot_ as $key => $value) {
+        if ($value > 1) {
+           $res[] = $key;
+        }
+    }
+    return $res;
+}
+// $arr =[7,1,5,4,3,4,6,0,9,5,8,2];
+// getSneakyNumbers($arr);
+
 ?>
